@@ -89,7 +89,6 @@ header h1 {
     font-size: clamp(3rem, 6vw, 5rem);
     letter-spacing: 0.06em;
     background: linear-gradient(135deg, #0a7cc8, #00a9ff);
-    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -116,8 +115,7 @@ main {
     background: rgba(255, 248, 235, 0.9);
     color: var(--accent-strong);
     font-size: clamp(2rem, 5vw, 3rem);
-     text-align: center;
-    padding: 3rem 1rem 1.5rem;
+    text-align: center;
     border: 1px solid var(--border);
 }
 
