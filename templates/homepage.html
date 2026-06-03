@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Day Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Beach Day Planner</h1>
+        <p>Plan the perfect beach day with activities, safety tips, and a fun beach game.</p>
+
+    </header>
+    
+    <main>
+        <section class="intro">
+            <p>Don't know what to do for a beach day? <strong>Beach Day Planner</strong> is here to help with ideas for activities, food, and safety.</p>
+        </section>
+
+        <section class="cards">
+            <article class="card">
+                <img src="{{ url_for('static', filename='images/images.jpg') }}" alt="Northern Beaches">
+                <div class="card-content">
+                    <h2>Northern Beaches</h2>
+                    <p>Explore Manly, Freshwater, Dee Why, Curl Curl, Palm Beach, Collaroy, and more.</p>
+                    <button type="button" class="button" onclick="window.location.href='/northenbeaches'">Visit Northern Beaches</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="{{ url_for('static', filename='images/images.jpg') }}" alt="The Beach Game">
+                <div class="card-content">
+                    <h2>The Beach Game</h2>
+                    <p>Play a quick online game while you plan your beach activities.</p> <br />
+                    <button type="button" class="button" onclick="window.location.href='/The-game'">Play the Game</button>
+                </div>
+            </article>
+        </section>
+
+        {% include 'essentials.html' %}
+    </main>
+
+    <footer>
+
+        <p>&copy; 2026 kcc Beach-day-planner</p>
+    </footer>
+
+    <!-- Link your JS here -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>
