@@ -29,6 +29,7 @@ def beach_page(beach):
         return render_template(template_path, body=html)
     except TemplateNotFound:
         abort(404)
+        # added a coment to test the commit functionality of git
 
 
 app.run(ssl_context=('localhost.crt', 'localhost.key'), port=443, host="0.0.0.0") 
