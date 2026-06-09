@@ -13,6 +13,7 @@
         <p> Within this page, you can find all the popular beaches in the Northern Beaches area.
         <br /> Including what you can do at each beach, what food you can eat, sights to explore, and more! </p>
     </header>
+    
     <main>
     <br /> 
     <a href="/"> <button> Back to homepage </button></a>
@@ -51,68 +52,65 @@
     <br />
     <br />
 
-    <!-- Collaroy 
+    <section class="cards">
+            <article class="card">
+                <!-- Deewhy Beach -->
+                <img src="{{ url_for('static', filename='/images/mariokart.jpg') }}" alt="deewhy Image">
+                <div class="card-content">
+                    <h2>Deewhy Beach</h2>
+                    <p>Enjoy the beautiful sands and clear waters of Deewhy Beach.</p>
+                    <br />
+                    <a href="/northenbeaches/dee-why"> <button> Dee Why Beach </button></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <!-- freshwater Beach -->
+                <img src="{{ url_for('static', filename='/images/overcooked.jpg') }}" alt="Freshwater Image">
+                <div class="card-content">
+                    <h2>Freshwater Beach</h2>
+                    <p>Enjoy the beautiful sands and clear waters of Freshwater Beach.</p>
+                    <br />
+                     <a href="/northenbeaches/freshwater"> <button> Freshwater Beach </button></a>
+                </div>
+            </article>
+                </div>
+            </article>
+    </section>
+
     <br />
-    <img src="{{ url_for('static', filename='/images/forsaken.jpg') }}"alt="collaroy image" width="300" height="200">
-    <br />       
-    <a href="/northenbeaches/collaroy"> <button> Collaroy Beach </button></a>
-    <br />  
     <br />
     <br />
-    -->
     
+        <section class="cards">
+            <article class="card">
+                <!-- Manly Beach -->
+                <img src="{{ url_for('static', filename='/images/smashbros.jpg') }}" alt="manly Image">
+                <div class="card-content">
+                    <h2>Manly Beach</h2>
+                    <p>Enjoy the beautiful sands and clear waters of Manly Beach.</p>
+                    <br />
+                    <a href="/northenbeaches/manly"> <button> Manly Beach </button></a>
+                </div>
+            </article>
 
-    <!-- Curl Curl 
-     
-    <br />
-    <img src="{{ url_for('static', filename='/images/boomerangfu.jpg') }}" alt="curl curl Image" width="300" height="200">
-    <br />
-    <a href="/northenbeaches/curl-curl"> <button> Curl Curl Beach </button></a>
-    <br />
-    <br />
-    <br />
- 
-    
-    -->
-    
+            <article class="card">
+                <!-- Palm Beach -->
+                <img src="{{ url_for('static', filename='/images/overcooked.jpg') }}" alt="Palm Image">
+                <div class="card-content">
+                    <h2>Palm Beach</h2>
+                    <p>Enjoy the beautiful sands and clear waters of Palm Beach.</p>
+                    <br />
+                    <a href="/northenbeaches/palm"> <button> Palm Beach </button></a>
+                </div>
+            </article>
+                </div>
+            </article>
+    </section>
 
-
-    <!-- Dee Why -->
-    <br />
-    <img src="{{ url_for('static', filename='/images/mariokart.jpg') }}" alt="deewhy Image" width="300" height="200">
-    <br />
-    <a href="/northenbeaches/dee-why"> <button> Dee Why Beach </button></a>
-    <br />
-    <br />    
-    <br />
-
-    <!-- Freshwater -->
-    <br />
-    <img src="{{ url_for('static', filename='/images/overcooked.jpg') }}" alt="Freshwater Image" width="300" height="200">
-    <br />
-    <a href="/northenbeaches/freshwater"> <button> Freshwater Beach </button></a>
-    <br />
-    <br />
-    <br />
-
-    <!-- Manly -->
-     <br />
-    <img src="{{ url_for('static', filename='/images/smashbros.jpg') }}" alt="manly Image" width="300" height="200">
-    <br />
-    <a href="/northenbeaches/manly"> <button> Manly Beach </button></a>
-    <br />
-    <br />
-    <br />
-
-    <!-- Palm -->
-    <br />
-    <img src="{{ url_for('static', filename='/images/splatoon.jpg') }}" alt="palm Image" width="300" height="200">
-    <br />
-    <a href="/northenbeaches/palm"> <button> Palm Beach </button></a>
-    <br />
-    <br />
-    <br />
     </main>
+
+    
     <footer>
         <p>&copy; 2026 kcc Beach-day-planner</p>
     </footer>
