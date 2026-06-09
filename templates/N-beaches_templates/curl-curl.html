@@ -1,7 +1,20 @@
-<!-- 
- 
-- Weather forcast(7 days)
-- paramater?
-- Sights: resturants/food areas, rock ppol, walking?
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
--->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curl Curl Beach</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="static/images/191015.png"> <!-- Possible change this image for something else? -->
+</head>
+<body>
+    <header>
+        <h1>Curl Curl Beach</h1>
+        <p>Discover the best activities, local food, and scenic sights at Curl Curl on Sydney's Northern Beaches.</p>
+    </header>
+    <main>
+        <section class="intro">
+            <p>Curl Curl Beach is a great place for families, surfers, and beach walkers. Use this guide to explore the top things to do, the best eats nearby, and the sights you won't want to miss.</p>
+        </section>
+        <a href="/northenbeaches"><button class="button">Back to Northern Beaches</button></a>
