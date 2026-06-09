@@ -10,26 +10,29 @@
 <body>
     <header>
         <h1>Collaroy Beach</h1>
-        <p>Discover the best activities, local food, and scenic sights at Collaroy on Sydney’s Northern Beaches.</p>
+        <p>Discover the best activities, local food, and scenic sights at Collaroy on Sydney's Northern Beaches.</p>
     </header>
     <main>
         <section class="intro">
             <p>Collaroy Beach is a great place for families, surfers, and beach walkers. Use this guide to explore the top things to do, the best eats nearby, and the sights you won't want to miss.</p>
         </section>
         <a href="/northenbeaches"><button class="button">Back to Northern Beaches</button></a>
+
+
+        <!-- 
+
+        - Weather forcast(7 days)
+        - paramater?
+        - Sights: resturants/food areas, rock ppol, walking?
+        
+        -->
+
+
+
         <section class="cards">
-            <article class="card">
-                <div class="card-content">
-                    <h2>Activities to do</h2>
-                    <p>Keep your beach day busy with fun experiences right at Collaroy Beach.</p>
-                    <ul>
-                        <li>Beach volleyball on the sand</li>
-                        <li>Surfing lessons or catching small waves</li>
-                        <li>Frisbee and beach games with friends</li>
-                        <li>Relaxing on the grassy headland and watching the sunset</li>
-                    </ul>
-                </div>
-            </article>
+            {% include 'activities.html' %}
+
+            
 
             <article class="card">
                 <div class="card-content">
