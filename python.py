@@ -22,6 +22,11 @@ def northenbeaches():
     return render_template("northenbeaches.html", body=html) 
 
 
+@app.route("/The-game")
+def game():
+    return render_template("The-game.html", body=html)
+
+
 @app.route("/northenbeaches/<beach>")
 def beach_page(beach):
     template_path = f"N-beaches_templates/{beach}.html"
