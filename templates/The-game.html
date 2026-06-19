@@ -6,16 +6,39 @@
     <title>The Beach Game</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='images/191015.png') }}">
+    <style>
+        #game-area { max-width: 800px; margin: 0 auto; }
+        #setup { text-align: center; padding: 2rem; }
+        #setup input { padding: 0.5rem; font-size: 1rem; margin: 0 0.5rem; }
+        #setup button { padding: 0.5rem 1.5rem; font-size: 1rem; cursor: pointer; }
+        #play { display: flex; flex-direction: column; gap: 1.5rem; }
+        #roundInfo { font-size: 1.3rem; font-weight: bold; text-align: center; }
+        #board { display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .player-section { text-align: center; }
+        .player-section img { width: 120px; height: 120px; object-fit: contain; border: 3px solid transparent; border-radius: 8px; transition: border 0.3s; }
+        #choices { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+        .move-buttons { display: flex; gap: 1rem; justify-content: center; }
+        .choice-img { padding: 0.75rem 1.25rem; font-size: 1rem; cursor: pointer; border: 2px solid #ccc; border-radius: 6px; background: #f0f0f0; transition: all 0.2s; }
+        .choice-img:hover { background: #e0e0e0; border-color: #08488b; }
+        .choice-img img { width: 40px; height: 40px; margin-right: 0.5rem; vertical-align: middle; }
+        #result { font-size: 1.2rem; font-weight: bold; text-align: center; min-height: 1.5em; color: #08488b; }
+        #resultImg { width: 80px; height: 80px; display: none; margin: 0 auto; }
+        #scores { font-size: 1.1rem; text-align: center; font-weight: bold; }
+        #final { text-align: center; padding: 2rem; }
+        #finalResult { font-size: 1.5rem; margin-bottom: 1.5rem; }
+        #finalResult img { max-width: 200px; margin: 1rem 0; }
+        #restart { padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>The Beach Game</h1>
+        <h1>The Beach Game <br/> Rock Paper Scissors</h1>
         <p> <strong style="color: #08488b;">Enjoy a quick interactive beach-themed experience while you explore the site.</strong></p>
     </header>
 
     <main>
         <section class="intro">
-            <p>This page is ready for a beach game. The game area is below, and you can replace the placeholder with your chosen game when you decide what to build.</p>
+            <p>Play rock, paper, scissors against the computer. Choose your number of rounds and compete!</p>
         </section>
     
     <a href="/"> <button> Back to homepage </button></a>
@@ -25,31 +48,217 @@
         <section class="cards">
             <article class="card">
                 <div class="card-content">
-                    <h2>Game Area</h2>
-                    <p>Below is the game container. Replace this content with your game HTML, canvas, or interactive elements.</p>
+                    <h2>Rock Paper Scissors Game</h2>
                     <div id="game-area" class="game-area">
-                        <p class="game-placeholder">Game will appear here.</p>
+                        <div id="rps-ui">
+                            <!-- SETUP PHASE -->
+                            <div id="setup">
+                                <label for="numGames"><strong>How many rounds do you want to play?</strong></label>
+                                <input id="numGames" type="number" min="1" value="3" />
+                                <button id="startBtn">Start Game</button>
+                            </div>
+
+                            <!-- PLAY PHASE -->
+                            <div id="play" style="display:none;">
+                                <p id="roundInfo">Round #1</p>
+                                <p id="scores">Computer: 0 — Player: 0</p>
+                                
+                                <div id="board">
+                                    <div class="player-section" id="playerArea">
+                                        <p><strong>You</strong></p>
+                                        <img id="playerImg" src="static/images/player.png" alt="player move" />
+                                    </div>
+                                    
+                                    <div id="choices">
+                                        <div class="move-buttons">
+                                            <button class="choice-img" data-move="rock" title="Rock">
+                                                <img src="{{ url_for('static', filename='images/rock.png') }}" alt="rock" onerror="this.style.display='none'">Rock
+                                            </button>
+                                            <button class="choice-img" data-move="paper" title="Paper">
+                                                <img src="{{ url_for('static', filename='images/paper.png') }}" alt="paper" onerror="this.style.display='none'">Paper
+                                            </button>
+                                            <button class="choice-img" data-move="scissors" title="Scissors">
+                                                <img src="{{ url_for('static', filename='images/scissors.png') }}" alt="scissors" onerror="this.style.display='none'">Scissors
+                                            </button>
+                                        </div>
+                                        <p id="result"></p>
+                                        <img id="resultImg" src="static/images/computer-bot.png" alt="round result" />
+                                    </div>
+                                    
+                                    <div class="player-section" id="computerArea">
+                                        <p><strong>Computer</strong></p>
+                                        <img id="computerImg" src="static/images/computer-bot.png" alt="computer move" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- END GAME PHASE -->
+                            <div id="final" style="display:none;">
+                                <h3 id="finalResult"></h3>
+                                <button id="restart">Play Again</button>
+                            </div>
+                        </div>
+                        <script>
+                            (function(){
+                                const moves = ["rock","paper","scissors"];
+                                let computerScore = 0;
+                                let playerScore = 0;
+                                let game = 1;
+                                let bestof = 3;
+
+                                // Get all DOM elements
+                                const numGamesEl = document.getElementById('numGames');
+                                const startBtn = document.getElementById('startBtn');
+                                const playDiv = document.getElementById('play');
+                                const roundInfo = document.getElementById('roundInfo');
+                                const resultEl = document.getElementById('result');
+                                const resultImg = document.getElementById('resultImg');
+                                const scoresEl = document.getElementById('scores');
+                                const finalDiv = document.getElementById('final');
+                                const finalResult = document.getElementById('finalResult');
+                                const restartBtn = document.getElementById('restart');
+                                const playerImg = document.getElementById('playerImg');
+                                const computerImg = document.getElementById('computerImg');
+
+                                // Function: Update score display
+                                function updateScores(){
+                                    scoresEl.textContent = `Computer: ${computerScore} — Player: ${playerScore}`;
+                                }
+
+                                // Function: Prepare next round
+                                function nextRound(){
+                                    roundInfo.textContent = `Round #${game}`;
+                                    resultEl.textContent = '';
+                                    resultImg.src = '';
+                                    resultImg.style.display = 'none';
+                                    playerImg.src = 'static/images/player.png';
+                                    computerImg.src = 'static/images/computer-bot.png';
+                                    playerImg.style.borderColor = 'transparent';
+                                    computerImg.style.borderColor = 'transparent';
+                                }
+
+                                // Function: End game and show final result
+                                function endGame(){
+                                    playDiv.style.display = 'none';
+                                    finalDiv.style.display = 'block';
+                                    
+                                    let message = '';
+                                    let icon = '';
+                                    
+                                    if (computerScore < playerScore) {
+                                        message = 'The human player has won! YAY!';
+                                        icon = '<img src="static/images/human-victory.gif" alt="player victory" style="max-width: 150px; margin: 1rem auto; display: block;">';
+                                    }
+                                    else if (computerScore > playerScore) {
+                                        message = 'The computer has won! GG!!';
+                                        icon = '<img src="static/images/dancing-robot.gif" alt="computer victory" style="max-width: 150px; margin: 1rem auto; display: block;">';
+                                    }
+                                    else {
+                                        message = 'Tie! GG!!';
+                                        icon = '<img src="static/images/sonic-shadow.webp" alt="Tie" style="max-width: 150px; margin: 1rem auto; display: block;" onerror="this.style.display=\'none\'">';
+                                    }
+                                    
+                                    finalResult.innerHTML = message + icon;
+                                }
+
+                                // Event: Start Game button
+                                startBtn.addEventListener('click', ()=>{
+                                    const n = parseInt(numGamesEl.value, 10);
+                                    if (!n || n < 1) return alert('Please enter a valid number of rounds (≥1)');
+                                    
+                                    bestof = n;
+                                    computerScore = 0;
+                                    playerScore = 0;
+                                    game = 1;
+                                    
+                                    document.getElementById('setup').style.display = 'none';
+                                    playDiv.style.display = 'flex';
+                                    finalDiv.style.display = 'none';
+                                    
+                                    updateScores();
+                                    nextRound();
+                                });
+
+                                // Event: Player chooses a move
+                                document.querySelectorAll('.choice-img').forEach(btn=>{
+                                    btn.addEventListener('click', ()=>{
+                                        if (game > bestof) return;
+                                        
+                                        const playerMove = btn.dataset.move;
+                                        const computerMove = moves[Math.floor(Math.random() * 3)];
+
+                                        // Set images
+                                        playerImg.src = `static/images/player.png`;
+                                        computerImg.src = `static/images/computer-bot.png`;
+
+                                        // Determine winner and update scores
+                                        let roundOutcome = '';
+                                        let playerWon = false;
+                                        
+                                        if (playerMove === computerMove){
+                                            roundOutcome = 'Tie.';
+                                            computerScore += 0.5;
+                                            playerScore += 0.5;
+                                            playerImg.style.borderColor = '#999';
+                                            computerImg.style.borderColor = '#999';
+                                            resultImg.src = 'static/images/sonic-shadow.webp';
+                                        } else if (
+                                            (playerMove === 'paper' && computerMove === 'rock') ||
+                                            (playerMove === 'scissors' && computerMove === 'paper') ||
+                                            (playerMove === 'rock' && computerMove === 'scissors')
+                                        ){
+                                            roundOutcome = 'Player won.';
+                                            playerWon = true;
+                                            playerScore += 1;
+                                            playerImg.style.borderColor = '#2b8a3e';
+                                            computerImg.style.borderColor = '#b82b2b';
+                                            resultImg.src = 'static/images/player.png';
+                                        } else {
+                                            roundOutcome = 'Computer won.';
+                                            computerScore += 1;
+                                            playerImg.style.borderColor = '#b82b2b';
+                                            computerImg.style.borderColor = '#2b8a3e';
+                                            resultImg.src = 'static/images/computer-bot.png';
+                                        }
+
+                                        // Display result
+                                        resultEl.textContent = roundOutcome;
+                                        resultImg.alt = roundOutcome;
+                                        resultImg.style.display = 'block';
+                                        updateScores();
+                                        
+                                        game += 1;
+                                        
+                                        if (game > bestof){
+                                            setTimeout(endGame, 800);
+                                        } else {
+                                            setTimeout(nextRound, 1200);
+                                        }
+                                    });
+                                });
+
+                                // Event: Restart button
+                                restartBtn.addEventListener('click', ()=>{
+                                    document.getElementById('setup').style.display = 'block';
+                                    playDiv.style.display = 'none';
+                                    finalDiv.style.display = 'none';
+                                    numGamesEl.value = '3';
+                                });
+                            })();
+                        </script>
                     </div>
                 </div>
             </article>
         </section>
 
         <section class="game-instructions">
-            <h2>How to use this page</h2>
-            <ul>
-                <li>Place your game markup inside the <code>#game-area</code> div.</li>
-                <li>Use JavaScript in <code>static/js/script.js</code> or a separate script file to add game logic.</li>
-                <li>Keep the layout consistent with the rest of the site by using the existing CSS classes.</li>
-            </ul>
+            <h2>About</h2>
+            <p> Endless cycle of rock paper scissors!</p>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2026 kcc Beach-day-planner</p>
     </footer>
-
-    <!-- Game Script (haven't created yet)
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    -->
 </body>
 </html>
