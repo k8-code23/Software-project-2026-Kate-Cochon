@@ -193,6 +193,13 @@ main {
     margin-bottom: 0.8rem;
 }
 
+.forecast-weekday {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0d4f7c;
+    letter-spacing: 0.03em;
+}
+
 .forecast-date {
     font-weight: 700;
     color: #1e4160;

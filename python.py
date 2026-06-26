@@ -58,6 +58,39 @@ def weather_code_description(code):
     }.get(code, "Unknown")
 
 
+def weather_code_icon(code):
+    return {
+        0: "☀️",
+        1: "🌤️",
+        2: "⛅",
+        3: "☁️",
+        45: "🌫️",
+        48: "🌫️",
+        51: "🌦️",
+        53: "🌦️",
+        55: "🌧️",
+        56: "🌧️",
+        57: "🌧️",
+        61: "🌧️",
+        63: "🌧️",
+        65: "⛈️",
+        66: "🌨️",
+        67: "🌨️",
+        71: "❄️",
+        73: "❄️",
+        75: "❄️",
+        77: "🌨️",
+        80: "🌦️",
+        81: "🌧️",
+        82: "⛈️",
+        85: "🌨️",
+        86: "🌨️",
+        95: "⛈️",
+        96: "⛈️",
+        99: "⛈️",
+    }.get(code, "❓")
+
+
 def get_weather_forecast(lat, lon):
     url = (
         f"https://api.open-meteo.com/v1/forecast"
@@ -75,9 +108,12 @@ def get_weather_forecast(lat, lon):
     daily = data.get("daily", {})
     forecast = []
     for index, date in enumerate(daily.get("time", [])[:7]):
+        date_obj = datetime.date.fromisoformat(date)
         forecast.append({
-            "date": date,
+            "weekday": date_obj.strftime("%a"),
+            "date": date_obj.strftime("%d %b"),
             "description": weather_code_description(daily.get("weathercode", [0])[index]),
+            "icon": weather_code_icon(daily.get("weathercode", [0])[index]),
             "temp_max": round(daily.get("temperature_2m_max", [0])[index]),
             "temp_min": round(daily.get("temperature_2m_min", [0])[index]),
             "rain": round(daily.get("precipitation_sum", [0])[index], 1),

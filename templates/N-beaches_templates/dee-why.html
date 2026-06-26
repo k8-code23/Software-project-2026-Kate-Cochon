@@ -34,37 +34,7 @@
                     <ul>
                         <li> Have a program to figure this out</li>
                     </ul>
-                    <section class="weather-forecast">
-                    {% if weather_forecast %}
-                        <div class="weather-forecast-header">
-                            <div>
-                                <h3>7-day weather forecast for {{ beach_name }}</h3>
-                                <p>Daily high/low, rain and wind for Dee Why Beach.</p>
-                            </div>
-                        </div>
-                        <div class="forecast-grid">
-                            {% for day in weather_forecast %}
-                                <div class="forecast-day">
-                                    <div class="forecast-top">
-                                        <div class="forecast-date">{{ day.date }}</div>
-                                        <div class="forecast-icon">{{ day.icon }}</div>
-                                    </div>
-                                    <div class="forecast-description">{{ day.description }}</div>
-                                    <div class="forecast-temps">
-                                        <span class="temp-high">{{ day.temp_max }}°C</span>
-                                        <span class="temp-low">{{ day.temp_min }}°C</span>
-                                    </div>
-                                    <div class="forecast-details">Rain: <strong>{{ day.rain }} mm</strong></div>
-                                    <div class="forecast-details">Wind: <strong>{{ day.wind_speed }} km/h</strong></div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div class="weather-error">
-                            <p>Weather forecast is unavailable right now. The site is using Open-Meteo and does not require an API key.</p>
-                        </div>
-                    {% endif %}
-                </section>
+                    {% include 'weatherfore.html' %}
                 
                 </div>
             </article>
