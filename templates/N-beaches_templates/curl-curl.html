@@ -1,69 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curl Curl Beach</title>
+    <title>North Curl Curl Beach</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="icon" href="static/images/191015.png"> <!-- Possible change this image for something else? -->
 </head>
 <body>
     <header>
-        <h1>Curl Curl Beach</h1>
-        <p>Discover the best activities, local food, and scenic sights at Curl Curl on Sydney's Northern Beaches.</p>
+        <h1>North Curl Curl Beach</h1>
+        <p> <strong style="color: #08488b;">Discover the best activities, local food, and scenic sights at North Curl Curl on Sydney's Northern Beaches.</strong></p>
     </header>
     <main>
         <section class="intro">
-            <p>Curl Curl Beach is a great place for families, surfers, and beach walkers. Use this guide to explore the top things to do, the best eats nearby, and the sights you won't want to miss.</p>
+            <p>North Curl Curl Beach is a great place for families, surfers, and beach walkers. Use this guide to explore the top things to do, the best eats nearby, and the sights you won't want to miss.</p>
         </section>
         <a href="/northenbeaches"><button class="button">Back to Northern Beaches</button></a>
 
-    <section class="cards">
-            {% include 'activities.html' %}
 
-            
+        <!-- 
 
+        - Weather forcast(7 days)
+        - paramater?
+        - Sights: resturants/food areas, rock ppol, walking?
+        
+        -->
+        <section class="cards">
             <article class="card">
                 <div class="card-content">
-                    <h2>Food to eat</h2>
-                    <p>Enjoy classic seaside snacks and nearby cafes for a tasty break.</p>
+                    <h2>Weather Forecast</h2>
+                    <p>Check the weather forecast for the next 7 days at North Curl Curl Beach.</p>
                     <ul>
-                        <li>Fish and chips from a local takeaway</li>
-                        <li>Ice cream or gelato from a beachside kiosk</li>
-                        <li>Cafe brunch with avocado toast and coffee</li>
-                        <li>Fresh seafood and casual meals by the water</li>
+                        <li> Have a program to figure this out</li>
                     </ul>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-content">
-                    <h2>Sights to explore</h2>
-                    <p>See the scenic coastal highlights and nearby attractions around Collaroy.</p>
-                    <ul>
-                        <li>Walk along the Collaroy promenade and rock shelf</li>
-                        <li>Explore nearby rock pools at low tide</li>
-                        <li>Visit the Collaroy Surf Life Saving Club</li>
-                        <li>Enjoy the coastal parklands and ocean views</li>
-                    </ul>
+                    <section class="weather-forecast">
+                    {% if weather_forecast %}
+                        <div class="weather-forecast-header">
+                            <div>
+                                <h3>7-day weather forecast for {{ beach_name }}</h3>
+                                <p>Daily high/low, rain and wind for North Curl Curl Beach.</p>
+                            </div>
+                        </div>
+                        <div class="forecast-grid">
+                            {% for day in weather_forecast %}
+                                <div class="forecast-day">
+                                    <div class="forecast-top">
+                                        <div class="forecast-date">{{ day.date }}</div>
+                                        <div class="forecast-icon">{{ day.icon }}</div>
+                                    </div>
+                                    <div class="forecast-description">{{ day.description }}</div>
+                                    <div class="forecast-temps">
+                                        <span class="temp-high">{{ day.temp_max }}°C</span>
+                                        <span class="temp-low">{{ day.temp_min }}°C</span>
+                                    </div>
+                                    <div class="forecast-details">Rain: <strong>{{ day.rain }} mm</strong></div>
+                                    <div class="forecast-details">Wind: <strong>{{ day.wind_speed }} km/h</strong></div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="weather-error">
+                            <p>Weather forecast is unavailable right now. The site is using Open-Meteo and does not require an API key.</p>
+                        </div>
+                    {% endif %}
+                </section>
+                
                 </div>
             </article>
         </section>
 
-        <section class="tips">
-            <h2>Visitor tips</h2>
-            <ul>
-                <li>Bring sunscreen, a hat, and water for a full day outdoors.</li>
-                <li>Check tide times before exploring rock pools.</li>
-                <li>Parking can fill up on weekends, so arrive early if you can.</li>
-                <li>Swim between the flags and obey lifeguard instructions.</li>
-            </ul>
+<!-- iNTRO For North Curl Curl beach activities  and attractions-->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2> North Curl Curl Beach activities and attraction </h2>
+                    <p> North Curl Curl Beach offers a variety of activities and attractions for visitors to enjoy. Here, you can find information about the top things to do and see.</p>   
+                </div>
+            </article>
         </section>
+        
+<!-- Nature and leisure -->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2> Nature and leisure </h2>
+                    <p>See the scenic coastal highlights and nearby attractions around North Curl Curl.</p>   
+                </div>
+            </article>
+        </section>
+<!-- Food places -->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2> Food places </h2>
+                    <p>Discover the best restaurants and food spots near North Curl Curl Beach.</p>   
+                </div>
+            </article>
+        </section>
+        
+        
+        {% include 'activities.html' %}
+    
+        
 
-        <div style="text-align:center; margin: 2rem 0;">
-
-        </div>
     </main>
      <footer>
         <p>&copy; 2026 kcc Beach-day-planner</p>

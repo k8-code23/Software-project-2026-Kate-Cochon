@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dee Why Beach</title>
@@ -11,10 +10,103 @@
 <body>
     <header>
         <h1>Dee Why Beach</h1>
-        <p>Discover the best activities, local food, and scenic sights at Dee Why on Sydney's Northern Beaches.</p>
+        <p> <strong style="color: #08488b;">Discover the best activities, local food, and scenic sights at Dee Why on Sydney's Northern Beaches.</strong></p>
     </header>
     <main>
         <section class="intro">
             <p>Dee Why Beach is a great place for families, surfers, and beach walkers. Use this guide to explore the top things to do, the best eats nearby, and the sights you won't want to miss.</p>
         </section>
         <a href="/northenbeaches"><button class="button">Back to Northern Beaches</button></a>
+
+
+        <!-- 
+
+        - Weather forcast(7 days)
+        - paramater?
+        - Sights: resturants/food areas, rock ppol, walking?
+        
+        -->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2>Weather Forecast</h2>
+                    <p>Check the weather forecast for the next 7 days at Dee Why Beach.</p>
+                    <ul>
+                        <li> Have a program to figure this out</li>
+                    </ul>
+                    <section class="weather-forecast">
+                    {% if weather_forecast %}
+                        <div class="weather-forecast-header">
+                            <div>
+                                <h3>7-day weather forecast for {{ beach_name }}</h3>
+                                <p>Daily high/low, rain and wind for Dee Why Beach.</p>
+                            </div>
+                        </div>
+                        <div class="forecast-grid">
+                            {% for day in weather_forecast %}
+                                <div class="forecast-day">
+                                    <div class="forecast-top">
+                                        <div class="forecast-date">{{ day.date }}</div>
+                                        <div class="forecast-icon">{{ day.icon }}</div>
+                                    </div>
+                                    <div class="forecast-description">{{ day.description }}</div>
+                                    <div class="forecast-temps">
+                                        <span class="temp-high">{{ day.temp_max }}°C</span>
+                                        <span class="temp-low">{{ day.temp_min }}°C</span>
+                                    </div>
+                                    <div class="forecast-details">Rain: <strong>{{ day.rain }} mm</strong></div>
+                                    <div class="forecast-details">Wind: <strong>{{ day.wind_speed }} km/h</strong></div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="weather-error">
+                            <p>Weather forecast is unavailable right now. The site is using Open-Meteo and does not require an API key.</p>
+                        </div>
+                    {% endif %}
+                </section>
+                
+                </div>
+            </article>
+        </section>
+
+<!-- iNTRO For Dee Why beach activities  and attractions-->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2> Dee Why Beach activities and attraction </h2>
+                    <p> Dee Why Beach offers a variety of activities and attractions for visitors to enjoy. Here, you can find information about the top things to do and see.</p>   
+                </div>
+            </article>
+        </section>
+        
+<!-- Nature and leisure -->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2> Nature and leisure </h2>
+                    <p>See the scenic coastal highlights and nearby attractions around Dee Why.</p>   
+                </div>
+            </article>
+        </section>
+<!-- Food places -->
+        <section class="cards">
+            <article class="card">
+                <div class="card-content">
+                    <h2> Food places </h2>
+                    <p>Discover the best restaurants and food spots near Dee Why Beach.</p>   
+                </div>
+            </article>
+        </section>
+        
+        
+        {% include 'activities.html' %}
+    
+        
+
+    </main>
+     <footer>
+        <p>&copy; 2026 kcc Beach-day-planner</p>
+    </footer>
+</body>
+</html>
