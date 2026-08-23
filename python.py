@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 BEACH_COORDINATES = {
     "collaroy": {"lat": -33.7494, "lon": 151.2815},
-   "curl-curl": {"lat": -33.7643,"lon": 151.2973},
+   "North-curl-curl": {"lat": -33.7643,"lon": 151.2973},
    "dee-why": {"lat": -33.7511, "lon": 151.2889},
    "freshwater": {"lat": -33.7787, "lon": 151.2857},
    "manly": {"lat": -33.798, "lon": 151.2883},
