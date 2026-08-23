@@ -102,6 +102,48 @@ header p {
     font-size: 1.05rem;
 }
 
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.nav-logo {
+    font-weight: 700;
+    color: var(--accent-strong);
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--accent-strong);
+}
+
 main {
     max-width: 1100px;
     margin: 0 auto;
@@ -141,20 +183,6 @@ main {
     gap: 1.75rem;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     margin-bottom: 1.75rem;
-}
-
-.topic-section {
-    margin-top: 2.5rem;
-}
-
-.topic-heading {
-    margin: 0 0 1rem;
-    color: #17689d;
-    font-size: 2rem;
-}
-
-.topic-section .cards {
-    margin-bottom: 0;
 }
 
 .weather-forecast {
@@ -287,33 +315,10 @@ main {
 }
 
 .card-content h2,
-.card-content h3,
 .tips h2,
 .page-section h2 {
     margin: 0 0 0.8rem;
     color: #17689d;
-}
-
-.card-label {
-    margin-bottom: 0.35rem !important;
-    color: var(--accent-strong) !important;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.card-link {
-    display: inline-flex;
-    margin-top: 0.35rem;
-    color: #0d6ea8;
-    font-weight: 800;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-}
-
-.card-link:hover {
-    color: var(--accent-strong);
 }
 
 .card-label {
