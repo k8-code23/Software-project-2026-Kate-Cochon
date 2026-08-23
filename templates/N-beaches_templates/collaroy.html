@@ -31,60 +31,87 @@
                 <div class="card-content">
                     <h2>Weather Forecast</h2>
                     <p>Check the weather forecast for the next 7 days at Collaroy Beach.</p>
-                    <ul>
-                        <li> Have a program to figure this out</li>
-                    </ul>
                     {% include 'weatherfore.html' %}
 
                 </div>
             </article>
         </section>
 
-<!-- iNTRO For Collaroy beach activities  and attractions-->
-        <section class="cards">
-            <article class="card">
-                <div class="card-content">
-                    <h2> Beach activities </h2>
-                    <p>Collaroy is a relaxed Northern Beaches destination with space for swimming, surfing, walking, and family time. The beach is easy to explore on foot, while the rock pool and nearby coastal paths offer more ways to enjoy the water.</p>
-                    <ul>
-                        <li>Swim or surf at Collaroy Beach, checking the flags and conditions before entering the water.</li>
-                        <li>Take a walk along the beachfront and enjoy views towards Long Reef and Narrabeen.</li>
-                        <li>Visit the Collaroy Rockpool for a quieter swim when ocean conditions are rough.</li>
-                        <li>Bring a picnic, towel, sunscreen, and water for a simple day by the coast.</li>
-                    </ul>
-                </div>
-            </article>
+        <section class="topic-section">
+            <h2 class="topic-heading">Beach activities</h2>
+            <div class="cards">
+                <article class="card">
+                    <img src="{{ url_for('static', filename='images/collaroy-thumbnail.jpg') }}" alt="Coastal view near Collaroy Beach">
+                    <div class="card-content">
+                        <p class="card-label">Walking</p>
+                        <h3>Long Reef Headland Walk</h3>
+                        <p>Follow the coastal path for ocean views and a refreshing walk around the headland.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Surfer riding a wave">
+                    <div class="card-content">
+                        <p class="card-label">Water activity</p>
+                        <h3>Surfing and swimming</h3>
+                        <p>Enjoy the beach for swimming or surfing, checking the beach flags and conditions first.</p>
+                    </div>
+                </article>
+            </div>
         </section>
-        
-<!-- Attractions -->
-        <section class="cards">
-            <article class="card">
-                <div class="card-content">
-                    <h2> Attractions </h2>
-                    <p>Collaroy is a good base for gentle coastal walks and outdoor activities. The open beach, rock platform, and nearby lagoon provide different scenery across the day.</p>
-                    <ul>
-                        <li>Walk south along the sand towards Narrabeen or north towards Long Reef.</li>
-                        <li>Explore the paths and picnic areas around Narrabeen Lagoon, a short trip from the beach.</li>
-                        <li>Look for seabirds and coastal wildlife around the dunes and rock platforms.</li>
-                        <li>Watch the sunrise or sunset from the sand, promenade, or a nearby lookout.</li>
-                    </ul>
-                </div>
-            </article>
+
+        <section class="topic-section">
+            <h2 class="topic-heading">Attractions</h2>
+            <div class="cards">
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1500534623283-312a031a6e8b?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Coastal lookout over the ocean">
+                    <div class="card-content">
+                        <p class="card-label">Scenic view</p>
+                        <h3>Long Reef Point Lookout</h3>
+                        <p>Stop at the lookout for open views across the coastline and ocean.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Ocean water beside a rocky shoreline">
+                    <div class="card-content">
+                        <p class="card-label">Coastal attraction</p>
+                        <h3>Collaroy Beach Rockpool</h3>
+                        <p>Visit the rockpool for a calmer swim and a classic Collaroy beach experience.</p>
+                    </div>
+                </article>
+            </div>
         </section>
-<!-- Food places -->
-        <section class="cards">
-            <article class="card">
-                <div class="card-content">
-                    <h2> Food places </h2>
-                    <p>There are several convenient places to eat around Collaroy and nearby Narrabeen. Choose a quick takeaway for the beach, a cafe breakfast, or a relaxed meal after a walk.</p>
-                    <ul>
-                        <li>Visit a beachfront cafe for coffee, breakfast, or a light lunch.</li>
-                        <li>Choose fish and chips, burgers, or takeaway food for an easy picnic by the sand.</li>
-                        <li>Explore restaurants and cafes along Pittwater Road and in nearby Narrabeen.</li>
-                        <li>Check opening hours and takeaway options before visiting, especially outside summer.</li>
-                    </ul>
-                </div>
-            </article>
+
+        <section class="topic-section">
+            <h2 class="topic-heading">Food places</h2>
+            <div class="cards">
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Restaurant dining tables at Hedonist">
+                    <div class="card-content">
+                        <p class="card-label">Restaurant</p>
+                        <h3>Hedonist</h3>
+                        <p>Enjoy a relaxed restaurant meal. Price range: $60-$140 AUD.</p>
+                        <a class="card-link" href="https://www.hedonistcollaroy.com.au/" target="_blank" rel="noopener noreferrer">Visit Hedonist</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Japanese restaurant food at Saza Japanese Izakaya">
+                    <div class="card-content">
+                        <p class="card-label">Japanese izakaya</p>
+                        <h3>Saza Japanese Izakaya</h3>
+                        <p>Japanese izakaya dining. Price range: $40-$80 AUD.</p>
+                        <a class="card-link" href="https://sazajapanese.com/" target="_blank" rel="noopener noreferrer">Visit Saza Japanese</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Bistro seating at The Beach Club Collaroy">
+                    <div class="card-content">
+                        <p class="card-label">Modern bistro</p>
+                        <h3>The Beach Club Collaroy</h3>
+                        <p>Modern bistro and pub classics. Price range: $20-$40 AUD.</p>
+                        <a class="card-link" href="https://thebeachclub.com.au/" target="_blank" rel="noopener noreferrer">Visit The Beach Club</a>
+                    </div>
+                </article>
+            </div>
         </section>
         
         

@@ -143,6 +143,20 @@ main {
     margin-bottom: 1.75rem;
 }
 
+.topic-section {
+    margin-top: 2.5rem;
+}
+
+.topic-heading {
+    margin: 0 0 1rem;
+    color: #17689d;
+    font-size: 2rem;
+}
+
+.topic-section .cards {
+    margin-bottom: 0;
+}
+
 .weather-forecast {
     padding: 1.5rem;
     border-radius: 1.8rem;
@@ -273,10 +287,55 @@ main {
 }
 
 .card-content h2,
+.card-content h3,
 .tips h2,
 .page-section h2 {
     margin: 0 0 0.8rem;
     color: #17689d;
+}
+
+.card-label {
+    margin-bottom: 0.35rem !important;
+    color: var(--accent-strong) !important;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.card-link {
+    display: inline-flex;
+    margin-top: 0.35rem;
+    color: #0d6ea8;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.card-link:hover {
+    color: var(--accent-strong);
+}
+
+.card-label {
+    margin-bottom: 0.35rem !important;
+    color: var(--accent-strong) !important;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.card-link {
+    display: inline-flex;
+    margin-top: 0.35rem;
+    color: #0d6ea8;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.card-link:hover {
+    color: var(--accent-strong);
 }
 
 .card-content p,
